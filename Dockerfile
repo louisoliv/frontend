@@ -1,6 +1,6 @@
 FROM node:22.8.0
 
-WORKDIR /socialnetwork-frontend
+WORKDIR /frontend
 
 COPY . .
 
