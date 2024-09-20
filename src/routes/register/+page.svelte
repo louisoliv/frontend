@@ -66,6 +66,11 @@
         };
     }
 
+    function imageAvar() {
+        const icon = document.getElementById("labelIcon")
+        icon.click()
+    }
+
  
     /**
      * Function to send data to the back end server in go
@@ -205,7 +210,7 @@
      />
 
     <div id="imageDiv" class="flex flex-col items-center m-3 relative">
-            <img id="image" src="./default_image.png" alt="avatar pic" class="flex justify-center w-32 h-32 object-cover rounded-full" />
+            <img id="image" src="./basic-avatar.png" alt="avatar pic" on:click={imageAvar} class="flex justify-center w-32 h-32 object-cover rounded-full cursor-pointer" />
 
             <input
                 type="file"
@@ -215,7 +220,7 @@
                 class="p-1.5 text-sm hidden"
                 on:change={handleFileChange}
             />
-            <label id="labelIcon" for="userFile" class="absolute top-2 right-10 text-white bg-cyan-500 w-7 h-7 flex items-center justify-center rounded-full text-lg cursor-pointer">
+            <label id="labelIcon" for="userFile" class="absolute -top-4  text-white bg-cyan-500 w-7 h-7 flex items-center justify-center rounded-full text-lg cursor-pointer ">
               <span class="material-symbols-outlined"> photo_camera </span>
             </label>
         </div>

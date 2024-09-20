@@ -1,5 +1,7 @@
 <script>
    import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
+     import { onMount } from 'svelte';
+
 
     let users = [];
     let posts = []
@@ -37,19 +39,49 @@
     };
 
 
-    function getCookieValue() {
-        let theCookies = document.cookie.split(";"); // Split cookies by semicolon
-        for (let i = 0; i < theCookies.length; i++) {
-            let cookie = theCookies[i].trim(); // Remove leading spaces
-            console.log("cookie is :",cookie);
-            if (cookie.startsWith("sessionId=")) {
-                return cookie.substring("sessionId=".length); // Get the value after "sessionId="
-            }
-        }
-        return null; // Return null if sessionId cookie is not found
+    // function getCookieValue() {
+    //     let theCookies = document.cookie.split(";"); // Split cookies by semicolon
+    //     for (let i = 0; i < theCookies.length; i++) {
+    //         let cookie = theCookies[i].trim(); // Remove leading spaces
+    //         console.log("cookie is :",cookie);
+    //         if (cookie.startsWith("sessionId=")) {
+    //             return cookie.substring("sessionId=".length); // Get the value after "sessionId="
+    //         }
+    //     }
+    //     return null; // Return null if sessionId cookie is not found
+    // }
+
+    //   let sessionId = null;
+
+    //   onMount(() => {
+    //     sessionId = getCookieValue(); // Only call this when the DOM is ready
+    //     console.log("sessionId:", sessionId); // This will now log the sessionId
+    //   });
+
+
+    // Function to safely check if we are in the browser environment
+    function isBrowser() {
+        return typeof window !== 'undefined' && typeof document !== 'undefined';
     }
 
-    let cookieValue = getCookieValue();
+    // Function to get the cookie value, only run in the browser
+    function getCookieValue() {
+      if (isBrowser()) {
+        console.log(document.cookie); // Safe access after the page is loaded
+        let theCookies = document.cookie.split(";"); // Split cookies by semicolon
+        for (let i = 0; i < theCookies.length; i++) {
+          let cookie = theCookies[i].trim(); // Remove leading spaces
+          console.log("cookie is:", cookie);
+          if (cookie.startsWith("sessionId=")) {
+            return cookie.substring("sessionId=".length); // Get the value after "sessionId="
+          }
+        }
+      }
+      return null; // Return null if sessionId cookie is not found
+    }
+
+    
+    let cookieValue =  getCookieValue();
     console.log("Value of the cookie: ", cookieValue);
 
 
@@ -66,6 +98,7 @@
                 if (result.hasOwnProperty("Success")) {
                 console.log('File and data uploaded successfully:', result);
                 //Setting the cookie if the user is already registered
+
                } else {
                 goto('/');
                 return
@@ -131,7 +164,7 @@
 
 
 <section class="flex min-h-screen bg-gray-100">
-<section class="relative flex min-h-screen w-[280px]">
+    <section class="relative flex min-h-screen w-[280px]">
         <section class="group absolute left-0 flex flex-col bg-gray-800 min-h-[110vh] w-20 hover:w-52 z-10 transition-all duration-300">
             <svg class="m-3" width="54" height="52" viewBox="0 0 54 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="54" height="52" rx="14" fill="#007BFF"/>
@@ -168,8 +201,8 @@
             <p class="margin-inline-start ms-20">Nom de Groupe</p>
         </section>
     </section>
-    <section class="flex min-h-screen w-full">
-        <section class="flex flex-col bg-gray-200 min-h-screen">
+    <section class="flex min-h-screen">
+        <section class="flex flex-col bg-gray-200 min-h-screen w-[950px]">
                 <section>
                 <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea>
                     <div class="m-2.5 h-screen overflow-auto">
@@ -199,10 +232,10 @@
                     </div>
                 </section>
         </section>
-         <section id="commentSection" class="bg-gray-600 hidden flex-col min-h-screen w-[320px] max-w-[320px]">
+        <section id="commentSection" class="bg-gray-600 flex flex-col min-h-screen w-[500px]">
             
             <div class="h-screen overflow-auto">
-                <button on:click={hideSectionComment}>X</button>
+                <!-- <button on:click={hideSectionComment}>X</button> -->
 
                 <div>
                     <!-- Render the comments for the selected post -->
@@ -217,7 +250,7 @@
                             </div>
                         {/each}
                     {:else}
-                        <p>No comments available for this post.</p>
+                        <p class="flex justify-center text-center text-xl">No comments available, please select a post.</p>
                     {/if}
                 </div>
             </div>
