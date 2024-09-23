@@ -185,7 +185,7 @@
                 {/if}
             {/each}
             {/each}
-            <button class="rounded-full bg-blue-500 text-white max-w-[64px] min-h-[64px] m-1">+</button>
+            <a href="/message" class="rounded-full bg-blue-500 text-white max-w-[64px] min-h-[64px] m-1 text-center items-center justify-center flex "><button>+</button></a>
             <a href="/profile" class="rounded-full bg-yellow-600 text-white max-w-[64px] min-h-[64px] m-1 mt-10 text-center items-center justify-center flex"><button>Profile</button></a>
             <button class="rounded-full bg-red-600 m-1 text-sm p-1" on:click={deleteCookie}>Log out</button>
 
