@@ -6,6 +6,9 @@ export default {
       scale: {
         103: "1.03",
       },
+      colors: {
+        customGray: "#D9D9D9",
+      },
     },
   },
   plugins: [],

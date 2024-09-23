@@ -233,10 +233,8 @@
                 </section>
         </section>
         <section id="commentSection" class="bg-gray-600 flex flex-col min-h-screen w-[500px]">
-            
             <div class="h-screen overflow-auto">
                 <!-- <button on:click={hideSectionComment}>X</button> -->
-
                 <div>
                     <!-- Render the comments for the selected post -->
                     {#if selectedPostComments.length > 0}
