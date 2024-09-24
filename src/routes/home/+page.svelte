@@ -208,7 +208,7 @@
                     </div>
             </section>
         </section>
-        <section id="commentSection" class="bg-gray-600 flex flex-col min-h-screen w-auto w-max-[40vw]">
+        <section id="commentSection" class="bg-gray-600 flex flex-col min-h-screen w-max-[35vw]">
             <div class="flex flex-row">
                 <input class="text-xxl  text-blue-500 m-4  max-w-[px] p-1" placeholder="Search...">
                 <div class="flex items-center align-middle">
@@ -225,13 +225,12 @@
                 </div>
             </div>
             <div class="h-screen overflow-auto">
-                <!-- <button on:click={hideSectionComment}>X</button> -->
-                <div>
+                <div class="flex flex-col justify-center items-center w-[33vw]">
                     <!-- Render the comments for the selected post -->
                     {#if selectedPostComments.length > 0}
                         {#each selectedPostComments as comment}
-                            <div class="flex flex-col bg-white h-auto p-1 m-3 text-xs text-center">
-                                <div class="flex flex-col justify-around p-4 w-[90%]">  
+                            <div class="flex flex-col bg-white h-auto p-1 m-3 text-xs text-center justify-center w-[95%]">
+                                <div class="flex flex-col justify-around p-4">  
                                     <div><strong>Name:</strong> {comment.name}</div>
                                     <div><strong>Email:</strong> {comment.email}</div>
                                     <div><strong>Body:</strong> {comment.body}</div>

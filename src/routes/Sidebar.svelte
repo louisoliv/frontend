@@ -32,6 +32,8 @@
     </section>
     <section class="flex flex-col bg-zinc-100 min-h-screen z-0 max-w-[280px] w-[280px]">
         <input class="ml-2 text-2xl  text-blue-500 my-4 ms-20 max-w-[px] p-2" placeholder="Search...">
+        <input class="text-xxl  text-blue-500 m-4  max-w-[px] p-1" placeholder="Search...">
+
         <p class="margin-inline-start ms-20">Nom de Groupe</p>
         <p class="margin-inline-start ms-20">Nom de Groupe</p>
         <p class="margin-inline-start ms-20">Nom de Groupe</p>

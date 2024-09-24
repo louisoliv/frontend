@@ -1,1 +1,1 @@
-<span>Hello welcome to the notification part !</span>
+<span class="w-auto w-max-[40vw]">Hello welcome to the notification part !</span>
