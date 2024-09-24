@@ -1,4 +1,5 @@
 <script>
+    export {deleteCookie} from './home/+page.svelte'
     export let users = [];
     export let albums = [];
     export let photos= [];
@@ -27,6 +28,7 @@
         {/each}
         <a href="/message"><button class="rounded-full bg-blue-500 text-white max-w-[64px] min-h-[64px] m-1">+</button></a>
         <a href="/profile" class="rounded-full bg-yellow-600 text-white max-w-[64px] min-h-[64px] m-1 mt-10 text-center items-center justify-center flex"><button>Profile</button></a>
+        <!-- <button class="rounded-full bg-red-600 m-1 text-sm p-1" on:click={deleteCookie}>Log out</button> -->
     </section>
     <section class="flex flex-col bg-zinc-100 min-h-screen z-0 max-w-[280px] w-[280px]">
         <input class="ml-2 text-2xl  text-blue-500 my-4 ms-20 max-w-[px] p-2" placeholder="Search...">
