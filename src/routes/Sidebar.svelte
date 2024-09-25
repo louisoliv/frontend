@@ -5,41 +5,50 @@
     export let photos= [];
 </script>
 
-<section class="relative flex min-h-screen w-[280px]">
-    <section class="group absolute left-0 flex flex-col bg-gray-800 min-h-[110vh] w-20 hover:w-52 z-10 transition-all duration-300">
-        <svg class="m-3" width="54" height="52" viewBox="0 0 54 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="54" height="52" rx="14" fill="#007BFF"/>
-            <path d="M16.484 36.892C15.668 36.924 14.916 36.82 14.228 36.58C13.556 36.356 13.004 36.044 12.572 35.644C12.156 35.244 11.892 34.78 11.78 34.252C11.668 33.708 11.764 33.156 12.068 32.596C12.484 31.924 13.316 31.724 14.564 31.996C15.508 32.188 16.156 32.292 16.508 32.308C16.876 32.324 17.188 32.276 17.444 32.164C18.612 31.78 19.268 31.364 19.412 30.916C19.508 30.58 19.3 30.188 18.788 29.74C18.58 29.548 18.348 29.356 18.092 29.164C17.836 28.972 17.62 28.78 17.444 28.588C16.644 27.996 16.012 27.316 15.548 26.548C15.1 25.764 14.916 24.916 14.996 24.004C15.076 23.092 15.228 22.34 15.452 21.748C15.676 21.14 15.956 20.604 16.292 20.14C16.884 19.324 17.652 18.66 18.596 18.148C19.684 17.588 20.556 17.228 21.212 17.068C22.508 16.78 23.82 16.756 25.148 16.996C25.596 17.076 25.98 17.228 26.3 17.452C26.62 17.676 26.94 17.908 27.26 18.148C27.82 18.708 27.956 19.276 27.668 19.852C27.556 20.108 27.38 20.316 27.14 20.476C26.9 20.636 26.644 20.724 26.372 20.74C26.404 21.172 26.324 21.492 26.132 21.7C25.764 22.068 25.124 22.308 24.212 22.42C22.9 22.324 22.012 22.396 21.548 22.636C21.004 22.924 20.804 23.548 20.948 24.508C20.98 24.716 21.108 24.932 21.332 25.156C21.572 25.38 21.844 25.62 22.148 25.876C22.468 26.132 22.796 26.42 23.132 26.74C23.484 27.06 23.788 27.428 24.044 27.844C24.94 29.316 24.868 31.036 23.828 33.004C23.06 34.476 21.748 35.58 19.892 36.316C18.932 36.7 17.796 36.892 16.484 36.892ZM27.3742 26.188C27.6942 25.116 27.9502 24.292 28.1422 23.716C28.3502 23.124 28.5502 22.596 28.7422 22.132C28.9342 21.668 29.1502 21.22 29.3902 20.788C29.6462 20.356 29.9182 19.964 30.2062 19.612C30.5102 19.244 30.8302 18.956 31.1662 18.748C31.5022 18.54 31.8542 18.436 32.2222 18.436C32.5902 18.436 32.9742 18.58 33.3742 18.868C34.0142 20.468 34.4062 21.54 34.5502 22.084C34.7422 22.884 34.9182 24.012 35.0782 25.468C35.2222 25.1 35.3822 24.716 35.5582 24.316C35.7502 23.9 35.9342 23.484 36.1102 23.068C36.6062 22.012 36.9182 21.212 37.0462 20.668C37.3982 19.548 38.1262 18.708 39.2302 18.148C40.1902 17.668 41.0862 17.516 41.9182 17.692C42.2542 17.756 42.4862 17.892 42.6142 18.1C42.7582 18.308 42.7582 18.524 42.6142 18.748C42.4862 18.972 42.4382 19.188 42.4702 19.396C42.5182 19.588 42.5582 19.82 42.5902 20.092C42.6382 20.828 42.5102 21.484 42.2062 22.06C41.9022 22.62 41.5902 23.324 41.2702 24.172C40.9502 25.004 40.6222 25.892 40.2862 26.836C39.9662 27.78 39.6382 28.74 39.3022 29.716C38.9662 30.692 38.6382 31.58 38.3182 32.38C37.6142 34.22 37.0382 35.236 36.5902 35.428C35.9822 35.796 35.5342 36.012 35.2462 36.076C34.8782 36.14 34.3582 36.14 33.6862 36.076C33.2702 36.044 32.9102 35.508 32.6062 34.468C32.4302 33.908 32.2702 33.132 32.1262 32.14C31.8702 30.412 31.6942 29.46 31.5982 29.284C30.9582 31.364 30.5022 32.676 30.2302 33.22C29.9742 33.764 29.7742 34.124 29.6302 34.3C29.5022 34.476 29.3422 34.708 29.1502 34.996C28.9422 35.572 28.4462 35.996 27.6622 36.268C26.9902 36.524 26.3822 36.564 25.8382 36.388C25.2462 36.196 25.0702 35.828 25.3102 35.284C25.4862 33.364 26.1742 30.332 27.3742 26.188Z" fill="white"/>
+<section class="relative flex min-h-screen">
+    <section class="flex flex-col bg-gray-800 min-h-[110vh] w-20 ">
+        <svg class="m-3" width="40" height="45" viewBox="0 0 40 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.6186 22.7438C24.4697 21.6726 24.923 20.3395 24.9013 18.9716C24.8797 17.6036 24.3844 16.2855 23.4998 15.2418C22.6153 14.1981 21.3962 13.4935 20.0503 13.2478C18.7045 13.0022 17.315 13.2308 16.1188 13.8948C14.9226 14.5587 13.9937 15.6169 13.4902 16.889C12.9867 18.1611 12.9399 19.5684 13.3577 20.8711C13.7755 22.1739 14.6321 23.2914 15.7815 24.0334C16.931 24.7754 18.3021 25.0958 19.6613 24.9402" stroke="#00A3FF" stroke-width="2"/>
+            <path d="M13.6544 41.3882C13.6544 41.3882 3.01751 40.8831 2.06373 35.7327C1.10995 30.5823 11.1565 7.91049 12.5449 5.88337C13.9333 3.85624 15.3187 2 20.3116 2C25.3045 2 25.8593 4.21907 26.9688 6.43813C28.0784 8.6572 37 33.5 37 33.5C37 33.5 40.5 42 35 42.5C29.5 43 26.8622 42.9813 24.5729 40.8831C22.2837 38.7848 20.7578 32.8713 20.7578 32.8713H15.5" stroke="#00A3FF" stroke-width="3"/>
         </svg>
         {#each users as user, userIndex (userIndex)}
         {#each albums as album, albumIndex (albumIndex)}
             {#if album.userId == user.id && (albumIndex == 0 || album.userId !== albums[albumIndex - 1].userId)}
             {#each photos as photo, photoIndex (photoIndex)}
             {#if photo.albumId == album.id && (photoIndex == 0 || photo.albumId !== photos[photoIndex - 1].albumId)}
-            <button class="flex items-center hover:bg-blue-500 rounded-lg ">
+              <div class="group relative flex items-center justify-center">
                 <img class="rounded-full max-w-[64px] m-1" src={photo.url} alt="Album photo" />
-                <!-- Hide the paragraph by default and show it on hover -->
-                <p class="hidden group-hover:block text-white">{user.name}</p>
-            </button>
+                <!-- User name appears on hover -->
+                <p class="absolute left-full bg-gray-900 text-white text-sm rounded px-7 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {user.name}
+                </p>
+            </div>
             {/if}
             {/each}
             {/if}
         {/each}
         {/each}
-        <a href="/message"><button class="rounded-full bg-blue-500 text-white max-w-[64px] min-h-[64px] m-1">+</button></a>
+        <a href="/message" class="rounded-full bg-blue-500 text-white max-w-[64px] min-h-[64px] m-1 mt-10 text-center items-center justify-center flex"><button>+</button></a>
         <a href="/profile" class="rounded-full bg-yellow-600 text-white max-w-[64px] min-h-[64px] m-1 mt-10 text-center items-center justify-center flex"><button>Profile</button></a>
         <!-- <button class="rounded-full bg-red-600 m-1 text-sm p-1" on:click={deleteCookie}>Log out</button> -->
     </section>
-    <section class="flex flex-col bg-zinc-100 min-h-screen z-0 max-w-[280px] w-[280px]">
-        <input class="ml-2 text-2xl  text-blue-500 my-4 ms-20 max-w-[px] p-2" placeholder="Search...">
-        <input class="text-xxl  text-blue-500 m-4  max-w-[px] p-1" placeholder="Search...">
-
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
-        <p class="margin-inline-start ms-20">Nom de Groupe</p>
+    <section class="flex flex-col bg-zinc-00 min-h-screen z-0 items-center w-[90%]">
+        <!-- <input class="ml-2 text-2xl  text-blue-500 my-4 ms-20 max-w-[px] p-2" placeholder="Search..."> -->
+        <div class="flex h-[7vh]">
+            <input class="text-xxl  text-blue-500 m-4 max-w-[px] p-1" placeholder="Search...">
+        </div>
+        <div class="bg-white flex flex-col h-[30vh] w-[90%] justify-center items-center mt-4 mb-4">Evénements</div>
+        <div class="flex flex-col bg-white mt-4 mb-4 h-[55vh] w-[90%] justify-center items-center">
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+            <p class="margin-inline-start">Nom de Groupe</p>
+        </div>
+        <div>
+            <a href="/" class="bg-blue-500 p-2 rounded-xl text-white"><button class="w-36 mt-6">New group</button></a>
+        </div>
     </section>
 </section>
