@@ -1,15 +1,26 @@
 <script>
+  import BellSvg from './BellSvg.svelte';
+  import LogoutSvg from './LogoutSvg.svelte';
 import Notification from './Notification.svelte';
-import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
+  import ProfileSvg from './ProfileSvg.svelte';
+// import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
 
 export let selectedPostComments = [];
 export let showNotification = false;
 
+let isOpen = false;
+
+function toggleDropdown() {
+    isOpen = !isOpen;
+}
+
+
 function bellIcon() {
-        console.log("clickkkkk");
-        selectedPostComments = []; 
-        showNotification = true
-    }
+    console.log("clickkkkk");
+    selectedPostComments = []; 
+    showNotification = true
+}
+    
 </script>
 
 <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
@@ -17,13 +28,27 @@ function bellIcon() {
         <input class="text-xxl  text-blue-500 m-4  max-w-[px] p-1" placeholder="Search...">
         <div class="flex items-center align-middle">
             <ul class="flex flex-row items-center h-[7vh] justify-center">
-                <li class="mr-2">
-                    <span class="bg-yellow-400 rounded-full p-1 w-[32px] m-1">O</span>
+                <li class="mr-2 cursor-pointer">
+                    <button on:click={toggleDropdown} class="bg-yellow-400 rounded-full p-1 w-[32px] m-1">O</button>
+                    {#if isOpen}
+                    <ul class="absolute right-0 mt-2 w-48 bg-[#6C6C6C] rounded shadow-lg">
+                        <li class="px-4 py-2 hover:bg-gray-200">
+                            <div class="flex items-center">
+                                <ProfileSvg/>
+                                <a href="/profile" class="text-white">Profile</a>
+                            </div>
+                        </li>
+                        <li class="px-4 py-2 hover:bg-gray-200">
+                            <div class="flex items-center">
+                                <LogoutSvg/>
+                                <a href="/logout" class="text-white">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                    {/if}
                 </li>
                 <button on:click={bellIcon} class="ml-2 z-10 cursor-pointer"> 
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
-                        <path d="M4 19V17H6V10C6 8.61667 6.41667 7.39167 7.25 6.325C8.08333 5.24167 9.16667 4.53333 10.5 4.2V3.5C10.5 3.08333 10.6417 2.73333 10.925 2.45C11.225 2.15 11.5833 2 12 2C12.4167 2 12.7667 2.15 13.05 2.45C13.35 2.73333 13.5 3.08333 13.5 3.5V4.2C14.8333 4.53333 15.9167 5.24167 16.75 6.325C17.5833 7.39167 18 8.61667 18 10V17H20V19H4ZM12 22C11.45 22 10.975 21.8083 10.575 21.425C10.1917 21.025 10 20.55 10 20H14C14 20.55 13.8 21.025 13.4 21.425C13.0167 21.8083 12.55 22 12 22ZM8 17H16V10C16 8.9 15.6083 7.95833 14.825 7.175C14.0417 6.39167 13.1 6 12 6C10.9 6 9.95833 6.39167 9.175 7.175C8.39167 7.95833 8 8.9 8 10V17Z" fill="#1D1B20"/>
-                    </svg>
+                    <BellSvg/>
                 </button>
             </ul>
         </div>
