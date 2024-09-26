@@ -72,7 +72,7 @@
             </div>
         </div>
         <div>
-            <a href="/" class="bg-blue-500 p-2 rounded-xl text-white"><button class="w-36 mt-6">New group</button></a>
+            <a href="/group" class="bg-blue-500 p-2 rounded-xl text-white"><button class="w-36 mt-6">New group</button></a>
         </div>
     </section>
 </section>
