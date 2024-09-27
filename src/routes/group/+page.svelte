@@ -7,7 +7,9 @@
   import EditSvg from '../EditSvg.svelte';
   import MessageSvg from '../MessageSvg.svelte';
    import Sidebar from '../Sidebar.svelte';
-     import { onMount } from 'svelte';
+   import { onMount } from 'svelte';
+  import PeopleSvg from '../PeopleSvg.svelte';
+//    import { bellIcon } from '../utils.js'; // Adjust the path if needed
 
 
     let users = [];
@@ -17,6 +19,7 @@
     let albums = [];
     let photos = [];
     let showNotification = false;
+    let showGroupInfo = false;
 
 
     // Fetch data when the component is mounted
@@ -173,6 +176,12 @@
         showNotification = true
     }
 
+    function peopleIcon() {
+        console.log("clickkkkk");
+        showGroupInfo = true
+    }
+
+
 </script>
 
 <section class="flex min-h-screen bg-gray-200">
@@ -188,6 +197,9 @@
                     <EditSvg/>
                     <CreatePostSvg/>
                     <MessageSvg/>
+                    <button on:click={peopleIcon} class="cursor-pointer">
+                        <PeopleSvg/>
+                    </button>
                     </div>
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
@@ -224,7 +236,10 @@
                     </div>
             </section>
         </section>
-            <Group {bellIcon} {selectedPostComments} {showNotification} />
+            <Group {bellIcon} {selectedPostComments} {showNotification} /> <!--Put the "showGroupInfo" oin the Group tag to use it in the Group.svelte file-->
+            {#if showGroupInfo === true}
+                <Group/>
+            {/if} 
     </section>
 </section>
 

@@ -1,78 +1,88 @@
 <script>
   import BellSvg from './BellSvg.svelte'; 
   import LogoutSvg from './LogoutSvg.svelte';
-import Notification from './Notification.svelte';
+  import Notification from './Notification.svelte';
   import ProfileSvg from './ProfileSvg.svelte';
+//   import { bellIcon } from './utils.js'; // Adjust the path if needed
+
 // import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
 
-// export let selectedPostComments = [];
+export let selectedPostComments = [];
 export let showNotification = false;
 
 let isOpen = false;
-let isNotif = false;
 
 function toggleDropdown() {
     isOpen = !isOpen;
 }
 
-function toggleDropdownNotif() {
-    isNotif = !isNotif;
-}
-
-
 
 function bellIcon() {
-    console.log("clickkkkk");
-    showNotification = true
-
+  showNotification = true;
+  selectedPostComments = [];
+  console.log("clickkkkk");
 }
-    
+
+
 </script>
 
-<section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%]">
-    <section>
-        <div class="flex flex-row m-2.5">
-            <input class="bg-customGray text-xxl text-black m-4  max-w-[px] p-1" placeholder="Search...">
-            <div class="flex items-center align-middle">
-                <ul class="flex flex-row items-center h-[7vh] justify-center">
-                    <li class="mr-2 cursor-pointer">
-                        <button on:click={toggleDropdown} class="bg-yellow-400 rounded-full p-1 w-[32px] m-1">O</button>
-                        {#if isOpen}
-                        <ul class="absolute z-10 right-0 mt-2 w-48 bg-[#6C6C6C] rounded shadow-lg">
-                            <li class="px-4 py-2 hover:bg-gray-200">
-                                <div class="flex items-center">
-                                    <ProfileSvg/>
-                                    <a href="/profile" class="text-white">Profile</a>
-                                </div>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-200">
-                                <div class="flex items-center">
-                                    <LogoutSvg/>
-                                    <a href="/logout" class="text-white">Logout</a>
-                                </div>
-                            </li>
-                        </ul>
-                        {/if}
-                    </li>
-                    <button on:click={toggleDropdownNotif} class="ml-2 z-10 cursor-pointer"> 
-                        <BellSvg/>
-                        {#if isNotif}
-                        <ul class="absolute z-10 right-0 mt-2 w-48 bg-[#6C6C6C] rounded shadow-lg">
-                            <li class="px-4 py-2 hover:bg-gray-200">Notif 1</li>
-                            <li class="px-4 py-2 hover:bg-gray-200">Notif 2</li>
-                            <li class="px-4 py-2 hover:bg-gray-200">Notif 3</li>
-                            <li class="px-4 py-2 hover:bg-gray-200">Notif 4</li>
-                        </ul>
-                        {/if}
-                    </button>
-                </ul>
-            </div>
+
+<section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
+    <div class="flex flex-row">
+        <input class="text-xxl  text-blue-500 m-4  max-w-[px] p-1" placeholder="Search...">
+        <div class="flex items-center align-middle">
+            <ul class="flex flex-row items-center h-[7vh] justify-center">
+                <li class="mr-2 cursor-pointer">
+                    <button on:click={toggleDropdown} class="bg-yellow-400 rounded-full z-100 relative p-1 w-[32px] m-1">O</button>
+                    {#if isOpen}
+                    <ul class="flex flex-col absolute z-10 right-0 mt-2 w-48 bg-[#6C6C6C] rounded shadow-lg">
+                        <li class="px-4 py-2 hover:bg-gray-200">
+                            <div class="flex items-center">
+                                <ProfileSvg/>
+                                <a href="/profile" class="text-white">Profile</a>
+                            </div>
+                        </li>
+                        <li class="px-4 py-2 hover:bg-gray-200">
+                            <div class="flex items-center">
+                                <LogoutSvg/>
+                                <a href="/logout" class="text-white">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                    {/if}
+                </li>
+                <button on:click={bellIcon} class="ml-2 z-100 cursor-pointer"> 
+                    <BellSvg/>
+                </button>
+            </ul>
         </div>
-        <section class="flex flex-col h-screen">
+    </div>
+    <div class="h-screen overflow-auto">
+        <!-- <button on:click={hideSectionComment}>X</button> -->
+        <div class="flex flex-col">
+            <!-- Render the comments for the selected post -->
+            {#if selectedPostComments.length > 0}
+                    <span class="font-bold ml-2">Commentaires</span>
+
+                {#each selectedPostComments as comment}
+                    <div class="flex flex-col bg-gray-300 h-auto p-1 m-3 text-xs text-center">
+                        <div class="flex flex-col justify-around p-4 w-[90%]">  
+                            <div><strong>Name:</strong> {comment.name}</div>
+                            <div><strong>Email:</strong> {comment.email}</div>
+                            <div><strong>Body:</strong> {comment.body}</div>
+                        </div>
+                    </div>
+                {/each}
+            {:else if showNotification === true}
+                 <span class="font-bold ml-2">Notifications</span>
+                <Notification/>
+
+            {:else}
+            <section class="flex flex-col h-screen">
             <div class=" flex flex-col h-[15vh] mb-8 relative">
                <div class="bg-[#0094FF] h-[60%] flex relative"></div>
-                    <div class="flex group absolute top-8 left-10">
-                        <!-- <img class="h-[120px] w-[120px] rounded-lg bg-slate-400"> -->
+                    <div class="flex  absolute top-8 left-10">
+                        <img class="h-[120px] w-[120px] rounded-lg bg-slate-400">
                         <span class="flex text-sm ml-2 h-[3vh] items-center font-bold relative top-16">Founded by : USERNAME</span>
                     </div>
                </div>
@@ -117,5 +127,8 @@ function bellIcon() {
                 </div>
             </div>
         </section>
-    </section>
+                
+            {/if}
+        </div>
+    </div>
 </section>
