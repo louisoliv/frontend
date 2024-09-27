@@ -1,5 +1,7 @@
 <script>
     import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
+    import Comment from '../Comment.svelte'
+    import About from '../About.svelte';
     import Sidebar from '../Sidebar.svelte';
     import { browser } from '$app/environment'; // Import to check for browser environment
 
@@ -10,6 +12,7 @@
     let albums = [];
     let photos = [];
     let cookieValue = null;
+    let showNotification = false;
 
     // Fetch data when the component is mounted
     const fetchUsers = async () => {
@@ -123,6 +126,11 @@
             selectedPostComments = [];
         }
     }
+    function bellIcon() {
+        console.log("clickkkkk");
+        selectedPostComments = []; 
+        showNotification = true
+    }
     let isEditing = false;
 
     function toggleEditMode() {
@@ -155,7 +163,13 @@
      <section class="flex min-h-screen w-full">
          <section class="flex flex-col bg-[var(--Light-background,#F8F9FA)] min-h-screen">
             <div class="flex justify-between items-center flex-shrink-0">
-                <span class="ms-[40px] ml-2 text-[#007BFF] text-2xl font-inter font-bold break-words m-4 max-w-[px] p-2">Profile</span>
+                <span class="ms-[40px] ml-2 text-[#007BFF] text-2xl font-inter font-bold break-words m-4 max-w-[px] p-2">
+                    {#each users as user}
+                    {#if user.id == 1}
+                    {user.name}
+                    {/if}
+                    {/each}
+                </span>
                 <button>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
                     <path d="M1.33337 31.1666L3.93337 22.2333C3.51115 21.3222 3.19449 20.3888 2.98337 19.4333C2.77226 18.4777 2.66671 17.5 2.66671 16.5C2.66671 14.6555 3.01671 12.9222 3.71671 11.3C4.41671 9.67774 5.36671 8.26663 6.56671 7.06663C7.76671 5.86663 9.17782 4.91663 10.8 4.21663C12.4223 3.51663 14.1556 3.16663 16 3.16663C17.8445 3.16663 19.5778 3.51663 21.2 4.21663C22.8223 4.91663 24.2334 5.86663 25.4334 7.06663C26.6334 8.26663 27.5834 9.67774 28.2834 11.3C28.9834 12.9222 29.3334 14.6555 29.3334 16.5C29.3334 18.3444 28.9834 20.0777 28.2834 21.7C27.5834 23.3222 26.6334 24.7333 25.4334 25.9333C24.2334 27.1333 22.8223 28.0833 21.2 28.7833C19.5778 29.4833 17.8445 29.8333 16 29.8333C15 29.8333 14.0223 29.7277 13.0667 29.5166C12.1112 29.3055 11.1778 28.9888 10.2667 28.5666L1.33337 31.1666ZM5.26671 27.2333L9.53337 25.9666C9.84449 25.8777 10.1612 25.8444 10.4834 25.8666C10.8056 25.8888 11.1112 25.9666 11.4 26.1C12.1112 26.4555 12.8556 26.7222 13.6334 26.9C14.4112 27.0777 15.2 27.1666 16 27.1666C18.9778 27.1666 21.5 26.1333 23.5667 24.0666C25.6334 22 26.6667 19.4777 26.6667 16.5C26.6667 13.5222 25.6334 11 23.5667 8.93329C21.5 6.86663 18.9778 5.83329 16 5.83329C13.0223 5.83329 10.5 6.86663 8.43337 8.93329C6.36671 11 5.33337 13.5222 5.33337 16.5C5.33337 17.3 5.42226 18.0888 5.60004 18.8666C5.77782 19.6444 6.04449 20.3888 6.40004 21.1C6.5556 21.3888 6.63893 21.6944 6.65004 22.0166C6.66115 22.3389 6.62226 22.6555 6.53337 22.9666L5.26671 27.2333ZM14.6667 21.8333H17.3334V17.8333H21.3334V15.1666H17.3334V11.1666H14.6667V15.1666H10.6667V17.8333H14.6667V21.8333Z" fill="#6C6C6C"/>
@@ -163,7 +177,7 @@
                 </button>
               </div>
                  <section>
-                    <div class="ms-[40px] me-[480px] mb-[28px] mt-[38px] mx-auto p-6 bg-white shadow-md rounded-md hover:shadow-lg transition-shadow duration-300">
+                    <!-- <div class="ms-[40px] me-[480px] mb-[28px] mt-[38px] mx-auto p-6 bg-white shadow-md rounded-md hover:shadow-lg transition-shadow duration-300">
                         {#each users as user}
                         {#if isEditing && user.id == 1}
                           <div>
@@ -213,7 +227,8 @@
                           {/if}
                         {/if}
                         {/each}
-                      </div>
+                      </div> -->
+                      <About {users} {toggleEditMode} />
                  <textarea class="ml-[40px] mr-[480px] h-[128px] h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea>
                      <div class="m-2.5 h-screen overflow-auto">
                          <!-- Render the fetched posts -->
@@ -242,30 +257,6 @@
                      </div>
                  </section>
          </section>
-          <section id="commentSection" class="bg-white hidden flex-col min-h-screen w-[423px] max-w-[423px]"> 
-            <div>
-                <input class="w-[261px] h-[var(--Icon-Medium,32px)] opacity-50 bg-[#D9D9D9]" type="text">
-            </div>          
-             <div class="h-screen overflow-auto">
-                 <button on:click={hideSectionComment}>X</button>
- 
-                 <div>
-                     <!-- Render the comments for the selected post -->
-                     {#if selectedPostComments.length > 0}
-                         {#each selectedPostComments as comment}
-                             <div class="flex flex-col bg-white h-auto p-1 m-3 text-xs text-center">
-                                 <div class="flex flex-col justify-around p-4">
-                                     <div><strong>Name:</strong> {comment.name}</div>
-                                     <div><strong>Email:</strong> {comment.email}</div>
-                                     <div><strong>Body:</strong> {comment.body}</div>
-                                 </div>
-                             </div>
-                         {/each}
-                     {:else}
-                         <p>No comments available for this post.</p>
-                     {/if}
-                 </div>
-             </div>
-         </section>
+         <Comment {bellIcon} {selectedPostComments} {showNotification} />
      </section>
  </section>
