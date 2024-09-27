@@ -10,10 +10,10 @@
 	<main>
 		<slot />
 	</main>
-
+<!-- 
 	<footer>
 		<p> &copy Social Network project 2024</p>
-	</footer>
+	</footer> -->
 </div>
 
 <style>

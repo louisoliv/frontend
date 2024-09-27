@@ -190,9 +190,36 @@
                     </div>
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
-                    <div class="bg-white m-2.5 h-screen overflow-auto flex flex-col items-center">
+                    <div class="m-12 max-h-[100vh] overflow-auto flex flex-col items-center   
+                          [&::-webkit-scrollbar]:w-2
+                          [&::-webkit-scrollbar-track]:bg-gray-100
+                          [&::-webkit-scrollbar-thumb]:bg-gray-300
+                          [&::-webkit-scrollbar-track]:rounded-full
+                          [&::-webkit-scrollbar-thumb]:rounded-full">
                         <!-- Render the fetched posts -->
                         <span>Create the first post</span>
+                        {#if posts.length > 0}
+                            {#each posts as post}
+                                <button on:click={displaySectionComment(post.id)} id="postDiv" class="flex flex-col bg-white h-auto p-2 mt-4 mb-4 hover:scale-103 w-[95%]">
+                                    <div class="flex flex-row justify-around p-4">
+                                        <div>Username: {findUserName(post.userId)}</div>
+                                        <div class="flex">
+                                            <div class="w-4 h-5 bg-red-500"></div>
+                                            <div class="w-4 h-5 bg-red-900"></div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="w-4 h-5 bg-red-500"></div>
+                                            <div class="w-4 h-5 bg-red-900"></div>
+                                        </div>
+                                        <!-- <div>Post ID: {post.id}</div> -->
+                                    </div>
+                                    <div class="flex p-2">Title: {post.title}</div>
+                                    <div class="flex bg-gray-300 p-4">Body: {post.body}</div>
+                                </button>
+                            {/each}
+                        {:else}Comment
+                        <p>Loading...</p>
+                        {/if}
                     </div>
             </section>
         </section>

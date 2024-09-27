@@ -184,7 +184,7 @@
                     </div>
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
-                    <div class="bg-white m-2.5 h-screen overflow-auto flex flex-col items-center">
+                    <div class="bg-white m-2.5 max-h-screen overflow-auto flex flex-col items-center">
                         <!-- Render the fetched posts -->
                         {#if posts.length > 0}
                             {#each posts as post}
