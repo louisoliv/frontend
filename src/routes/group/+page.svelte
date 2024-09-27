@@ -2,6 +2,7 @@
    import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
 //   import Notification from '../Notification.svelte';
   import Group from '../Group.svelte'
+//   import Comment from '../Comment.svelte'
   import CreatePostSvg from '../CreatePostSvg.svelte';
   import EditSvg from '../EditSvg.svelte';
   import MessageSvg from '../MessageSvg.svelte';
@@ -223,7 +224,7 @@
                     </div>
             </section>
         </section>
-        <Group {bellIcon} {showNotification} />
+            <Group {bellIcon} {selectedPostComments} {showNotification} />
     </section>
 </section>
 

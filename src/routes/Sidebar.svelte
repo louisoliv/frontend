@@ -1,5 +1,7 @@
 <script>
   import Logo from './Logo.svelte';
+  import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
+
 
     export {deleteCookie} from './home/+page.svelte'
     export let users = [];
@@ -9,7 +11,7 @@
 
 <section class="relative flex min-h-screen">
     <section class="flex flex-col bg-gray-800 min-h-[110vh] w-20 ">
-    <button on:click={()=> console.log("Hello")} class="ml-2 z-10 cursor-pointer"> 
+    <button on:click={()=> goto("/home")} class="ml-2 z-10 cursor-pointer"> 
         <Logo/>
     </button>
         {#each users as user, userIndex (userIndex)}

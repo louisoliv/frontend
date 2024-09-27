@@ -74,7 +74,7 @@ function bellIcon() {
                 <Notification/>
 
             {:else}
-                <p class="flex justify-center text-center text-xl">No comments available, please select a post.</p>
+                <p class="flex justify-center text-center text-xl">No  comments available, please select a post.</p>
             {/if}
         </div>
     </div>

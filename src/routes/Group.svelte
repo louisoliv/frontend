@@ -5,20 +5,26 @@ import Notification from './Notification.svelte';
   import ProfileSvg from './ProfileSvg.svelte';
 // import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
 
-export let selectedPostComments = [];
+// export let selectedPostComments = [];
 export let showNotification = false;
 
 let isOpen = false;
+let isNotif = false;
 
 function toggleDropdown() {
     isOpen = !isOpen;
 }
 
+function toggleDropdownNotif() {
+    isNotif = !isNotif;
+}
+
+
 
 function bellIcon() {
     console.log("clickkkkk");
-    selectedPostComments = []; 
     showNotification = true
+
 }
     
 </script>
@@ -48,8 +54,16 @@ function bellIcon() {
                         </ul>
                         {/if}
                     </li>
-                    <button on:click={bellIcon} class="ml-2 z-10 cursor-pointer"> 
+                    <button on:click={toggleDropdownNotif} class="ml-2 z-10 cursor-pointer"> 
                         <BellSvg/>
+                        {#if isNotif}
+                        <ul class="absolute z-10 right-0 mt-2 w-48 bg-[#6C6C6C] rounded shadow-lg">
+                            <li class="px-4 py-2 hover:bg-gray-200">Notif 1</li>
+                            <li class="px-4 py-2 hover:bg-gray-200">Notif 2</li>
+                            <li class="px-4 py-2 hover:bg-gray-200">Notif 3</li>
+                            <li class="px-4 py-2 hover:bg-gray-200">Notif 4</li>
+                        </ul>
+                        {/if}
                     </button>
                 </ul>
             </div>
@@ -58,7 +72,7 @@ function bellIcon() {
             <div class=" flex flex-col h-[15vh] mb-8 relative">
                <div class="bg-[#0094FF] h-[60%] flex relative"></div>
                     <div class="flex group absolute top-8 left-10">
-                        <img class="h-[120px] w-[120px] rounded-lg bg-slate-400">
+                        <!-- <img class="h-[120px] w-[120px] rounded-lg bg-slate-400"> -->
                         <span class="flex text-sm ml-2 h-[3vh] items-center font-bold relative top-16">Founded by : USERNAME</span>
                     </div>
                </div>
