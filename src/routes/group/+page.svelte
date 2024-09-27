@@ -1,8 +1,10 @@
 <script>
    import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
 //   import Notification from '../Notification.svelte';
-  import Comment from '../Comment.svelte'
+  import Group from '../Group.svelte'
   import CreatePostSvg from '../CreatePostSvg.svelte';
+  import EditSvg from '../EditSvg.svelte';
+  import MessageSvg from '../MessageSvg.svelte';
    import Sidebar from '../Sidebar.svelte';
      import { onMount } from 'svelte';
 
@@ -178,40 +180,23 @@
         <section class="flex flex-col min-h-screen w-[80%]">
             <section>
                 <div class="bg-white flex justify-between items-center mt-4 m-2.5 p-0.5">
-                    <div class="flex items-center align-middle font-bold text-3xl text-blue-500 t-2 ml-2">Home</div>
+                    <div class="flex items-center align-middle font-bold text-3xl text-blue-500 t-2 ml-2">
+                        <input placeholder="New group">
+                    </div>
                     <div class="flex justify-center items-center mr-2"> 
+                    <EditSvg/>
                     <CreatePostSvg/>
+                    <MessageSvg/>
                     </div>
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
                     <div class="bg-white m-2.5 h-screen overflow-auto flex flex-col items-center">
                         <!-- Render the fetched posts -->
-                        {#if posts.length > 0}
-                            {#each posts as post}
-                                <button on:click={displaySectionComment(post.id)} id="postDiv" class="flex flex-col bg-white h-auto p-2 mt-4 mb-4 hover:scale-103 w-[95%]">
-                                    <div class="flex flex-row justify-around p-4">
-                                        <div>Username: {findUserName(post.userId)}</div>
-                                        <div class="flex">
-                                            <div class="w-4 h-5 bg-red-500"></div>
-                                            <div class="w-4 h-5 bg-red-900"></div>
-                                        </div>
-                                        <div class="flex">
-                                            <div class="w-4 h-5 bg-red-500"></div>
-                                            <div class="w-4 h-5 bg-red-900"></div>
-                                        </div>
-                                        <!-- <div>Post ID: {post.id}</div> -->
-                                    </div>
-                                    <div class="flex p-2">Title: {post.title}</div>
-                                    <div class="flex bg-gray-300 p-4">Body: {post.body}</div>
-                                </button>
-                            {/each}
-                        {:else}Comment
-                        <p>Loading...</p>
-                        {/if}
+                        <span>Create the first post</span>
                     </div>
             </section>
         </section>
-        <Comment {bellIcon} {selectedPostComments} {showNotification} />
+        <Group {bellIcon} {showNotification} />
     </section>
 </section>
 

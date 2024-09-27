@@ -47,7 +47,6 @@
 
 <section class="flex min-h-screen bg-gray-100">
     <Sidebar { users } { albums } { photos } />
-
     <section class="flex min-h-screen w-full">
         <section class="flex flex-col min-h-screen w-full">
             <div class="flex flex-row justify-between m-3 p-2 h-[8vh]">
