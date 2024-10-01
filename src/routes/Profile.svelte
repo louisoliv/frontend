@@ -1,30 +1,11 @@
 <script>
-    // existing imports
-    import BellSvg from './BellSvg.svelte'; 
-    import LogoutSvg from './LogoutSvg.svelte';
-    import Notification from './Notification.svelte';
     import About from './About.svelte';
-    import ProfileSvg from './ProfileSvg.svelte';
 
     export let users = [];
     let isEditing = false;
-    // export let showNotification = false;
     
     let isOpen = false;
     let isNotif = false;
-
-    function toggleDropdown() {
-        isOpen = !isOpen;
-    }
-
-    function toggleDropdownNotif() {
-        isNotif = !isNotif;
-    }
-
-    // function bellIcon() {
-    //     console.log("clickkkkk");
-    //     showNotification = true;
-    // }
 
     function toggleEditMode() {
         isEditing = !isEditing;

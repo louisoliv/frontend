@@ -1,26 +1,5 @@
 <script>
-  import BellSvg from './BellSvg.svelte';
-  import LogoutSvg from './LogoutSvg.svelte';
-import Notification from './Notification.svelte';
-  import ProfileSvg from './ProfileSvg.svelte';
-// import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
-
-export let selectedPostComments = [];
-export let showNotification = false;
-
-let isOpen = false;
-
-function toggleDropdown() {
-    isOpen = !isOpen;
-}
-
-
-function bellIcon() {
-    console.log("clickkkkk");
-    selectedPostComments = []; 
-    showNotification = true
-}
-    
+export let selectedPostComments = [];  
 </script>
 
     <div class="h-screen overflow-auto">

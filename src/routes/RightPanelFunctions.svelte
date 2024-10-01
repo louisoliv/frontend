@@ -17,7 +17,6 @@
     }
 
     function bellIcon() {
-        console.log(selectedPostComments, showProfile, showNotification)
         selectedPostComments = [];
         let toggleProfile
         let toggleNotification

@@ -1,7 +1,6 @@
 <script>
     import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
     import Comment from '../Comment.svelte'
-    import About from '../About.svelte';
     import RightPanelFunctions from '../RightPanelFunctions.svelte'
     import Profile from '../Profile.svelte'
     import Sidebar from '../Sidebar.svelte';

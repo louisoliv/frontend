@@ -223,7 +223,7 @@
         <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
             <RightPanelFunctions {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
             {#if !showNotification}
-            <Comment {bellIcon} {selectedPostComments} {showNotification} />
+            <Comment {selectedPostComments} />
             {:else}
             <Notification />
             {/if}
