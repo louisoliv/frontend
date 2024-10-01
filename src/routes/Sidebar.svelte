@@ -3,7 +3,7 @@
   import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
 
 
-    export {deleteCookie} from './home/+page.svelte'
+    // export {deleteCookie} from './home/+page.svelte'
     export let users = [];
     export let albums = [];
     export let photos= [];

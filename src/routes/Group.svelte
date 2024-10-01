@@ -3,12 +3,15 @@
   import LogoutSvg from './LogoutSvg.svelte';
   import Notification from './Notification.svelte';
   import ProfileSvg from './ProfileSvg.svelte';
+  import Group from './group/+page.svelte'
 //   import { bellIcon } from './utils.js'; // Adjust the path if needed
 
 // import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte';
 
 export let selectedPostComments = [];
 export let showNotification = false;
+export let showGroupInfo = false;
+
 
 let isOpen = false;
 
@@ -19,9 +22,12 @@ function toggleDropdown() {
 
 function bellIcon() {
   showNotification = true;
+  showGroupInfo = false
+
   selectedPostComments = [];
   console.log("clickkkkk");
 }
+    
 
 
 </script>
@@ -76,13 +82,62 @@ function bellIcon() {
             {:else if showNotification === true}
                  <span class="font-bold ml-2">Notifications</span>
                 <Notification/>
+            {:else if showGroupInfo === true}
+                <section class="flex flex-col h-screen">
+                    <div class=" flex flex-col h-[15vh] mb-8 relative">
+                       <div class="bg-[#0094FF] h-[60%] flex relative"></div>
+                            <div class="flex  absolute top-8 left-10">
+                                <img class="h-[120px] w-[120px] rounded-lg bg-slate-400" alt="Image for the group">
+                                <span class="flex text-sm ml-2 h-[3vh] items-center font-bold relative top-16">Founded by : USERNAME</span>
+                            </div>
+                       </div>
+                    <div class="flex flex-col h-[30vh]">
+                        <span class="flex font-bold ml-2">About</span>
+                        <div class="flex justify-center">
+                            <textarea disabled class="flex text-center resize-none w-96 h-52 m-2 rounded-lg bg-customGray"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mt-4 mb-4 w-full ">
+                    <span class="font-bold ml-2">Membres</span>
 
+                        <div class="flex flex-col">
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 1</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 2</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 3</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 4</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 5</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 6</p>
+                            </div>
+                            <div class="flex flex-row m-2">
+                                <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
+                                <p class="bg-customGray flex items-center w-full p-2">Membre 7</p>        
+                            </div>
+                        </div>
+                    </div>
+                </section>
             {:else}
             <section class="flex flex-col h-screen">
             <div class=" flex flex-col h-[15vh] mb-8 relative">
                <div class="bg-[#0094FF] h-[60%] flex relative"></div>
                     <div class="flex  absolute top-8 left-10">
-                        <img class="h-[120px] w-[120px] rounded-lg bg-slate-400">
+                        <img class="h-[120px] w-[120px] rounded-lg bg-slate-400" alt="Image for the group">
                         <span class="flex text-sm ml-2 h-[3vh] items-center font-bold relative top-16">Founded by : USERNAME</span>
                     </div>
                </div>

@@ -164,6 +164,15 @@
         sectionComment.style.display = "flex"
     }
 
+
+    function displayGroup() {
+        console.log("clickkkkk");
+        showGroupInfo = true
+        let sectionComment = document.getElementById("commentSection")
+        sectionComment.style.display = "flex"
+    }
+
+
     function hideSectionComment() {
         let sectionComment = document.getElementById("commentSection")
         sectionComment.style.display = "none"
@@ -174,11 +183,16 @@
         console.log("clickkkkk");
         selectedPostComments = []; 
         showNotification = true
+        showGroupInfo = false
+
     }
 
     function peopleIcon() {
         console.log("clickkkkk");
+        selectedPostComments = []; 
+        showNotification = false
         showGroupInfo = true
+        
     }
 
 
@@ -230,16 +244,13 @@
                                     <div class="flex bg-gray-300 p-4">Body: {post.body}</div>
                                 </button>
                             {/each}
-                        {:else}Comment
+                        {:else} Comment
                         <p>Loading...</p>
                         {/if}
                     </div>
             </section>
         </section>
-            <Group {bellIcon} {selectedPostComments} {showNotification} /> <!--Put the "showGroupInfo" oin the Group tag to use it in the Group.svelte file-->
-            {#if showGroupInfo === true}
-                <Group/>
-            {/if} 
+            <Group {bellIcon} {selectedPostComments} {showNotification} {peopleIcon} {showGroupInfo}  /> <!--Put the "showGroupInfo" oin the Group tag to use it in the Group.svelte file-->
     </section>
 </section>
 
