@@ -2,18 +2,21 @@
     import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
     import Comment from '../Comment.svelte'
     import About from '../About.svelte';
+    import RightPanelFunctions from '../RightPanelFunctions.svelte'
     import Profile from '../Profile.svelte'
     import Sidebar from '../Sidebar.svelte';
     import { browser } from '$app/environment'; // Import to check for browser environment
+    import Notification from '../Notification.svelte';
 
     let users = [];
     let posts = [];
     let comments = [];
-    let selectedPostComments = [];
     let albums = [];
     let photos = [];
     let cookieValue = null;
+    let selectedPostComments = [];
     let showNotification = false;
+    let showProfile = true
 
     // Fetch data when the component is mounted
     const fetchUsers = async () => {
@@ -24,13 +27,13 @@
     const fetchPosts = async () => {
         const response = await fetch('https://jsonplaceholder.typicode.com/posts');
         posts = await response.json();
-        console.log("posts: ", posts);
+        // console.log("posts: ", posts);
     };
 
     const fetchComments = async () => {
         const response = await fetch('https://jsonplaceholder.typicode.com/comments');
         comments = await response.json();
-        console.log("comments: ", comments);
+        // console.log("comments: ", comments);
     };
 
     const fetchAlbums = async () => {
@@ -114,6 +117,8 @@
 
     function displaySectionComment(postId) {
         selectedPostComments = findCommentPosts(postId);
+        showNotification = false
+        showProfile = false
         if (browser) {
             let sectionComment = document.getElementById("commentSection");
             sectionComment.style.display = "flex";
@@ -127,11 +132,7 @@
             selectedPostComments = [];
         }
     }
-    function bellIcon() {
-        console.log("clickkkkk");
-        selectedPostComments = []; 
-        showNotification = true
-    }
+
     let isEditing = false;
 
     function toggleEditMode() {
@@ -156,6 +157,13 @@
     user = { ...originalUser }; // Revert to original data
     isEditing = false;
   }
+
+  function handleToggleProfile(event) {
+        const { showProfile: updatedShowProfile, showNotification: updatedShowNotification, selectedPostComments: updatedSelectedPostComments } = event.detail;
+        showProfile = updatedShowProfile;
+        showNotification = updatedShowNotification;
+        selectedPostComments = updatedSelectedPostComments
+    }
 </script>
  
  
@@ -206,6 +214,15 @@
                      </div>
                  </section>
          </section>
-         <Profile {bellIcon} {selectedPostComments} {showNotification} {users}/>
+         <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
+            <RightPanelFunctions {showProfile} {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
+                {#if showProfile == true && selectedPostComments.length == 0 }
+                <Profile {users} />
+            {:else if showNotification == true && selectedPostComments.length == 0 }
+                <Notification />
+            {:else if showProfile == false && showNotification == false}
+                <Comment {selectedPostComments} {showNotification} />
+            {/if}
+        </section>
      </section>
  </section>

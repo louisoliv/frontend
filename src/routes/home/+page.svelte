@@ -3,7 +3,9 @@
 //   import Notification from '../Notification.svelte';
   import Comment from '../Comment.svelte'
   import CreatePostSvg from '../CreatePostSvg.svelte';
+    import RightPanelFunctions from '../RightPanelFunctions.svelte';
    import Sidebar from '../Sidebar.svelte';
+   import Notification from '../Notification.svelte'
      import { onMount } from 'svelte';
 
 
@@ -14,6 +16,7 @@
     let albums = [];
     let photos = [];
     let showNotification = false;
+    let showProfile = false;
 
 
     // Fetch data when the component is mounted
@@ -154,6 +157,7 @@
 
     function displaySectionComment(postId) {
         selectedPostComments = findCommentPosts(postId);
+        showNotification = false
         let sectionComment = document.getElementById("commentSection")
         sectionComment.style.display = "flex"
     }
@@ -167,9 +171,14 @@
     function bellIcon() {
         console.log("clickkkkk");
         selectedPostComments = []; 
-        showNotification = true
+        showNotification = !showNotification
     }
-
+    function handleToggleProfile(event) {
+        const { showProfile: updatedShowProfile, showNotification: updatedShowNotification, selectedPostComments: updatedSelectedPostComments } = event.detail;
+        showProfile = updatedShowProfile;
+        showNotification = updatedShowNotification;
+        selectedPostComments = updatedSelectedPostComments
+    }
 </script>
 
 <section class="flex min-h-screen bg-gray-200">
@@ -211,7 +220,14 @@
                     </div>
             </section>
         </section>
-        <Comment {bellIcon} {selectedPostComments} {showNotification} />
+        <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
+            <RightPanelFunctions {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
+            {#if !showNotification}
+            <Comment {bellIcon} {selectedPostComments} {showNotification} />
+            {:else}
+            <Notification />
+            {/if}
+    </section>
     </section>
 </section>
 
