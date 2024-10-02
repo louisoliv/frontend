@@ -10,9 +10,6 @@
     let users = [];
     let firstNames = [];
     let lastNames = [];
-
-    let comments = []
-    let selectedPostComments = []; 
     let albums = [];
     let photos = [];
     let showNotification = false;
@@ -44,7 +41,6 @@
     //     const response = await fetch('https://jsonplaceholder.typicode.com/photos');
     //     photos = await response.json();
     // };
-
 
 
 
@@ -89,14 +85,6 @@
                console.log("Result from fetch cookie value: ", result);
                console.log("url: ", url);
                return result
-            //     if (result.hasOwnProperty("Success")) {
-            //     console.log('File and data uploaded successfully:', result);
-            //     //Setting the cookie if the user is already registered
-
-            //    } else {
-            //     goto('/');
-            //     return
-            //    }
            } else {
                console.error('Cookie not valid');
            }
@@ -120,7 +108,16 @@
         AuthorId:cookieValue,
     }
 
+   let comments = {
+        AuthorId:cookieValue,
+        // PostId: postId,
+    }
+
+   let selectedPostComments = []; 
+
+
     let resultPosts = []
+    let resultComments = []
 
     async function allFetches () {
         let result = await fetchCookieValue('http://localhost:8080/verificationSessionId', cookieValue)
@@ -137,13 +134,9 @@
         }
 
         resultPosts = fetchedPosts.Posts
-
         console.log("Result Post . post: ", resultPosts);
-        console.log("Post id : ", resultPosts[0].Id);
-        console.log("Post id : ", resultPosts[1].Id);
-        console.log("Post id : ", resultPosts[2].Id);
-        console.log("Result Posts length : ", resultPosts.length);
-        console.log(Array.isArray(resultPosts)); // Should print `true`
+        console.log("Result Comment: ", resultComments);
+    
     }
 
     
@@ -157,37 +150,29 @@
 
     console.log("Result post after the fetch: ", resultPosts);
     
-
-
-    let previousUserId = null;
+    let COMMENTS = []
 
     const findUserName = (userId) => {
         const user = users.find(user => user.id === userId);
         return user ? user.name : 'Unknown User';
     };
 
-    // const findFirstName = (firstName) => {
-    //     console.log("FirstName: ", firstName);
-    //     const first = firstNames.find(first => first.FirstName === firstName);
-    //     return first ? first.FirstName : 'Unknown User';
-    // };
-
-    // const findLastName = (lastName) => {
-    //     console.log("Lastname: ", lastName);
-    //     const last = lastNames.find(last => last.LastName === lastName);
-    //     return last ? last.LastName : 'Unknown lastname';
-    // };
 
     const findCommentPosts = (postId) => {
-        return comments.filter(comment => comment.postId === postId);
+        return COMMENTS.filter(comment => comment.PostId === postId);
     }
 
-    function onClick(event) {
-        event.preventDefault()
-        console.log("Hello");
-    }
 
-    function displaySectionComment(postId) {
+    async function displaySectionComment(postId) {
+
+        let fetchedComments = await fetchCookieValue('http://localhost:8080/getComment', comments);
+        if (!fetchedComments.hasOwnProperty("Success")) {
+            goto('/');
+            return;
+        }
+        
+        COMMENTS = fetchedComments.Posts
+        console.log("COMMENTS: ", COMMENTS);
         selectedPostComments = findCommentPosts(postId);
         let sectionComment = document.getElementById("commentSection")
         sectionComment.style.display = "flex"
@@ -224,17 +209,17 @@
                         {#if resultPosts.length > 0}
                             {#each resultPosts as post}
                                 <button on:click={displaySectionComment(post.Id)} id="postDiv" class="flex flex-col bg-white h-auto p-2 mt-4 mb-4 hover:scale-103 w-[95%]">
-                                    <div class="flex flex-row justify-around p-4">
+                                    <div class="flex flex-row justify-between p-4">
                                         {#if post.Username} 
-                                            <div>Username: {(post.Username)}</div>
+                                            <div class="flex">Username: {(post.Username)}</div>
                                         {:else}
-                                            <div>{(post.FirstName)} {(post.LastName)}</div>
+                                            <div class="flex">{(post.FirstName)} {(post.LastName)}</div>
                                         {/if}
+                                        
                                         <div class="flex">
                                             <div class="w-4 h-5 bg-red-500">{post.LikeCount}</div>
                                             <div class="w-4 h-5 bg-red-900"></div>
-                                        </div>
-                                        <div class="flex">
+                                    
                                             <div class="w-4 h-5 bg-red-500">{post.DislikeCount}</div>
                                             <div class="w-4 h-5 bg-red-900"></div>
                                         </div>
@@ -245,7 +230,6 @@
                                 </button>
                             {/each}
                         {:else}
-
                             <p>Loading...</p>
                         {/if}
                     </div>

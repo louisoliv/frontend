@@ -63,9 +63,13 @@ function bellIcon() {
                 {#each selectedPostComments as comment}
                     <div class="flex flex-col bg-gray-300 h-auto p-1 m-3 text-xs text-center">
                         <div class="flex flex-col justify-around p-4 w-[90%]">  
-                            <div><strong>Name:</strong> {comment.name}</div>
-                            <div><strong>Email:</strong> {comment.email}</div>
-                            <div><strong>Body:</strong> {comment.body}</div>
+                            <!-- <div><strong>Name:</strong> {comment.name}</div>
+                            <div><strong>Email:</strong> {comment.email}</div> -->
+                            <div><strong>Author Id: </strong> {comment.AuthorId}</div>
+                            <div><strong>Text</strong> {comment.Text}</div>
+                            <div><strong>Creation Date: </strong> {comment.CreationDate}</div>
+                            <div><strong>Like: </strong> {comment.LikeCount}</div>
+                            <div><strong>Dislike: </strong> {comment.DislikeCount}</div>
                         </div>
                     </div>
                 {/each}
