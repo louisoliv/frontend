@@ -3,6 +3,8 @@
     import BellSvg from './BellSvg.svelte';
     import LogoutSvg from './LogoutSvg.svelte';
     import ProfileSvg from './ProfileSvg.svelte';
+     import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
+
 
     export let selectedPostComments = [];
     export let showNotification = false;
@@ -29,6 +31,21 @@
         }
         dispatch('toggleProfile', { showProfile: toggleProfile, showNotification: toggleNotification, selectedPostComments: selectedPostComments });
     }
+
+      function DeleteCookie() {
+      var res = document.cookie;
+      var arrayCookie = res.split(";");
+      for(var i = 0; i < arrayCookie.length; i++) {
+          var key = arrayCookie[i].split("=");
+          document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+      }
+      goto('/')
+   }
+
+
+
+
+    
 </script>
 
 <div class="flex flex-row m-2.5">
@@ -48,7 +65,7 @@
                     <li class="px-4 py-2 hover:bg-gray-200">
                         <div class="flex items-center">
                             <LogoutSvg/>
-                            <a href="/logout" class="text-white">Logout</a>
+                            <button on:click={DeleteCookie} class="text-white">Logout</button>
                         </div>
                     </li>
                 </ul>

@@ -7,6 +7,7 @@
    import Sidebar from '../Sidebar.svelte';
    import Notification from '../Notification.svelte'
      import { onMount } from 'svelte';
+  import HomeSvg from '../HomeSvg.svelte';
 
 
     let users = [];
@@ -16,34 +17,9 @@
     let photos = [];
     let showNotification = false;
     let showProfile = false;
+    let selectedPostComments = []; 
 
 
-    // Fetch data when the component is mounted
-    // const fetchUsers = async () => {
-    //     const response = await fetch('http://localhost:8080/getUser');
-    //     users = await response.json();
-    // };
-
-    // const fetchPosts = async () => {
-    //     const response = await fetch('http://localhost:8080/getPost')
-    //     posts = await response.json();
-    //     console.log("posts: ", posts);
-    // };
-
-    // const fetchComments= async () => {
-    //     const response = await fetch('http://localhost:8080/getComment')
-    //     comments = await response.json();
-    //     console.log("comments: ", comments);
-    // };
-
-    // const fetchAlbums = async () => {
-    //     const response = await fetch('https://jsonplaceholder.typicode.com/albums');
-    //     albums = await response.json();
-    // };
-    // const fetchPhotos = async () => {
-    //     const response = await fetch('https://jsonplaceholder.typicode.com/photos');
-    //     photos = await response.json();
-    // };
 
 
 
@@ -95,17 +71,16 @@
            console.error('Error with the cookie:', error);
        }
    }
-
   
-  export function deleteCookie() {
-      var res = document.cookie;
-      var arrayCookie = res.split(";");
-      for(var i = 0; i < arrayCookie.length; i++) {
-          var key = arrayCookie[i].split("=");
-          document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
-      }
-      goto('/')
-   }
+//   export function DeleteCookie() {
+//       var res = document.cookie;
+//       var arrayCookie = res.split(";");
+//       for(var i = 0; i < arrayCookie.length; i++) {
+//           var key = arrayCookie[i].split("=");
+//           document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+//       }
+//       goto('/')
+//    }
 
    let posts = {
         AuthorId:cookieValue,
@@ -116,7 +91,6 @@
         // PostId: postId,
     }
 
-   let selectedPostComments = []; 
 
 
     let resultPosts = []
@@ -137,19 +111,14 @@
         }
 
         resultPosts = fetchedPosts.Posts
-        console.log("Result Post . post: ", resultPosts);
+        console.log("Result Post . post: ", resultPosts);posts
         console.log("Result Comment: ", resultComments);
     
     }
 
     
-   
     allFetches()
-    // fetchUsers();
-    // fetchPosts()
-    // fetchComments()
-    // fetchAlbums();
-    // fetchPhotos();
+
 
     console.log("Result post after the fetch: ", resultPosts);
     
@@ -207,9 +176,13 @@
         <section class="flex flex-col min-h-screen w-[80%]">
             <section>
                 <div class="bg-white flex justify-between items-center mt-4 m-2.5 p-0.5">
-                    <div class="flex items-center align-middle font-bold text-3xl text-blue-500 t-2 ml-2">Home</div>
-                    <div class="flex justify-center items-center mr-2"> 
-                    <CreatePostSvg/>
+                    <div class="flex items-center align-middle">
+                        <HomeSvg/>
+                        <div class="flex items-center align-middle font-bold text-3xl text-blue-500 t-2 ml-2">Home</div>        
+                    </div>
+                    <div class="flex justify-center group items-center mr-2 cursor-pointer p-0.5 appearance-none" on:click={() => console.log('I was pressed')}>
+                        <input type="text" placeholder="Quoi de neuf ?" class="flex relative mr-2 w-32 cursor-pointer focus:outline-none focus:border-none" readonly> 
+                        <CreatePostSvg/>
                     </div>
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->

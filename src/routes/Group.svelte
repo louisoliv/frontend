@@ -182,7 +182,6 @@ function bellIcon() {
                 </div>
             </div>
         </section>
-                
             {/if}
         </div>
     </div>
