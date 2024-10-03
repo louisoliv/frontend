@@ -1,12 +1,25 @@
 <script>
   import ClosePostSvg from "./ClosePostSvg.svelte";
-import SparklesSvg from "./SparklesSvg.svelte";
+  import SparklesSvg from "./SparklesSvg.svelte";
 
-export let resultUserInfo 
-
-console.log("In Post component: ",resultUserInfo);
-
+  export let resultUserInfo 
   export let closeModal;
+
+  console.log("In Post component: ",resultUserInfo);
+
+  let authorId = resultUserInfo.ID
+  let text = ""
+  let image = ""
+  let creationDate
+
+  const PostData = {
+    AuthorId: authorId,
+    Text: text,
+    Image: image,
+    CreationDate: creationDate,
+  }
+
+
 </script>
 
 <div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center">
@@ -31,7 +44,7 @@ console.log("In Post component: ",resultUserInfo);
     </div>
   </div>
   <div class="flex items-center justify-center">
-    <textarea class="bg-gray-100 flex justify-center items-center resize-none w-[45vw] h-[20vh]"></textarea>
+    <textarea class="bg-gray-100 flex justify-center items-center resize-none w-[45vw] h-[20vh]" bind:value={text}></textarea>
   </div>
     <button 
       class="mt-10 bg-blue-500 text-white px-4 py-2 text-lg rounded w-full" 
