@@ -1,12 +1,11 @@
 <script>
-   import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
-//   import Notification from '../Notification.svelte';
+  import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
   import Comment from '../Comment.svelte'
   import CreatePostSvg from '../CreatePostSvg.svelte';
-    import RightPanelFunctions from '../RightPanelFunctions.svelte';
-   import Sidebar from '../Sidebar.svelte';
-   import Notification from '../Notification.svelte'
-     import { onMount } from 'svelte';
+  import RightPanelFunctions from '../RightPanelFunctions.svelte';
+  import Sidebar from '../Sidebar.svelte';
+  import Notification from '../Notification.svelte'
+  import Post from '../Post.svelte'
   import HomeSvg from '../HomeSvg.svelte';
 
 
@@ -91,12 +90,15 @@
         // PostId: postId,
     }
 
-
+   let user = {
+        SessionId:cookieValue,
+    }
 
     let resultPosts = []
     let resultComments = []
+    export let resultUserInfo = []
 
-    async function allFetches () {
+    async function AllFetches () {
         let result = await fetchCookieValue('http://localhost:8080/verificationSessionId', cookieValue)
         if (!result.hasOwnProperty("Success")) {
             goto('/');
@@ -110,17 +112,23 @@
             return;
         }
 
+        let fetchedUser = await fetchCookieValue('http://localhost:8080/getUser', user);
+        if (!fetchedUser.hasOwnProperty("Success")) {
+            goto('/');
+            return;
+        }
+
+        resultUserInfo = fetchedUser.userInfos[0]
+        console.log("resltUserInfo: ",resultUserInfo);
         resultPosts = fetchedPosts.Posts
-        console.log("Result Post . post: ", resultPosts);posts
+        console.log("Result Post . post: ", resultPosts);
         console.log("Result Comment: ", resultComments);
     
     }
 
     
-    allFetches()
+    AllFetches()
 
-
-    console.log("Result post after the fetch: ", resultPosts);
     
     let COMMENTS = []
 
@@ -168,6 +176,13 @@
         showNotification = updatedShowNotification;
         selectedPostComments = updatedSelectedPostComments
     }
+
+    let showModal = false;
+
+    function toggleModal() {
+        showModal = !showModal;
+    }
+
 </script>
 
 <section class="flex min-h-screen bg-gray-200">
@@ -180,10 +195,13 @@
                         <HomeSvg/>
                         <div class="flex items-center align-middle font-bold text-3xl text-blue-500 t-2 ml-2">Home</div>        
                     </div>
-                    <div class="flex justify-center group items-center mr-2 cursor-pointer p-0.5 appearance-none" on:click={() => console.log('I was pressed')}>
+                    <div class="flex justify-center group items-center mr-2 cursor-pointer p-0.5 appearance-none" on:click={toggleModal}>
                         <input type="text" placeholder="Quoi de neuf ?" class="flex relative mr-2 w-32 cursor-pointer focus:outline-none focus:border-none" readonly> 
                         <CreatePostSvg/>
                     </div>
+                        {#if showModal}
+                      <Post {resultUserInfo} closeModal={toggleModal} />
+                    {/if}
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
                     <div class="bg-white m-2.5 max-h-screen overflow-auto flex flex-col items-center">

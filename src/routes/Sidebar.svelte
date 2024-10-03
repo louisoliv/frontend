@@ -11,7 +11,7 @@
 
 <section class="relative flex min-h-screen">
     <section class="flex flex-col bg-gray-800 min-h-[110vh] w-20 ">
-    <button on:click={()=> goto("/home")} class="ml-2 z-10 cursor-pointer"> 
+    <button on:click={()=> goto("/home")} class="ml-2 z-0 cursor-pointer"> 
         <Logo/>
     </button>
         {#each users as user, userIndex (userIndex)}
