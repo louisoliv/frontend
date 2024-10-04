@@ -11,34 +11,6 @@
         isEditing = !isEditing;
     }
 
-//     async function getFollower() {
-
-//        try {
-//            const response = await fetch('http://localhost:8080/getFollower', {
-//                method: 'POST',
-//                body: JSON.stringify(formDataLogin)
-//            });
-
-//            if (response.ok) {
-//                const result = await response.json();
-//                 if (result.hasOwnProperty("Success")) {
-//                 console.log('File and data uploaded successfully:', result);
-//                 //Setting the cookie if the user is already registered
-//                 document.cookie = `sessionId=${result.sessionId}; path=/`;
-//                 valueMail = "";
-//                 valuePassword = "";
-//                 goto('/home');
-//                } else {
-//                 return
-//                }
-//            } else {
-//                console.error('Failed to upload file');
-//            }
-//        } catch (error) {
-//            console.error('Error uploading file:', error);
-//        }
-//    }
-
 </script>
 
         <section class="flex flex-col h-screen">

@@ -58,13 +58,10 @@ declare module '$env/static/private' {
 	export const NODE: string;
 	export const npm_package_name: string;
 	export const REMOTE_CONTAINERS_SOCKETS: string;
-	export const DISPLAY: string;
 	export const LANG: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const TERM_PROGRAM: string;
 	export const npm_lifecycle_script: string;
-	export const SSH_AUTH_SOCK: string;
-	export const REMOTE_CONTAINERS_DISPLAY_SOCK: string;
 	export const SHELL: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
@@ -141,13 +138,10 @@ declare module '$env/dynamic/private' {
 		NODE: string;
 		npm_package_name: string;
 		REMOTE_CONTAINERS_SOCKETS: string;
-		DISPLAY: string;
 		LANG: string;
 		VSCODE_GIT_IPC_HANDLE: string;
 		TERM_PROGRAM: string;
 		npm_lifecycle_script: string;
-		SSH_AUTH_SOCK: string;
-		REMOTE_CONTAINERS_DISPLAY_SOCK: string;
 		SHELL: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;

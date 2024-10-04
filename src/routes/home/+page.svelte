@@ -1,12 +1,11 @@
 <script>
-   import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
-//   import Notification from '../Notification.svelte';
-  import Comment from '../Comment.svelte'
-  import CreatePostSvg from '../CreatePostSvg.svelte';
-    import RightPanelFunctions from '../RightPanelFunctions.svelte';
-   import Sidebar from '../Sidebar.svelte';
-   import Notification from '../Notification.svelte'
-     import { onMount } from 'svelte';
+import { goto } from '$app/navigation'; // Import the SvelteKit navigation function
+import Comment from '../Comment.svelte'
+import RightPanelFunctions from '../RightPanelFunctions.svelte';
+import Sidebar from '../Sidebar.svelte';
+import Notification from '../Notification.svelte'
+import CreatePostSvg from '../CreatePostSvg.svelte';
+import { onMount } from 'svelte';
 
 
     let users = [];
@@ -71,7 +70,6 @@
 
     
     let cookieValue =  getCookieValue();
-    console.log("Value of the cookie: ", cookieValue);
 
 
     async function fetchCookieValue(url, data) {
@@ -122,7 +120,7 @@
     let resultPosts = []
     let resultComments = []
 
-    async function allFetches () {
+    async function AllFetches () {
         let result = await fetchCookieValue('http://localhost:8080/verificationSessionId', cookieValue)
         if (!result.hasOwnProperty("Success")) {
             goto('/');
@@ -142,16 +140,21 @@
     
     }
 
-    
-   
-    allFetches()
+      // Perform all fetches after the page is mounted in the browser
+      onMount(async () => {
+        // Retrieve the cookie value after the page has mounted
+        cookieValue = getCookieValue();
+        console.log("Value of the cookie: ", cookieValue);
+
+        // Run all fetches only in the client (after page load)
+        await AllFetches();
+      });
+
     // fetchUsers();
     // fetchPosts()
     // fetchComments()
     // fetchAlbums();
     // fetchPhotos();
-
-    console.log("Result post after the fetch: ", resultPosts);
     
     let COMMENTS = []
 
