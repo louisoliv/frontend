@@ -1,8 +1,9 @@
 <script>
     import About from './About.svelte';
 
-    export let users = [];
+    export let user = [];
     let isEditing = false;
+    let users = []
     
     let isOpen = false;
     let isNotif = false;
@@ -19,11 +20,7 @@
                 <div class="flex group absolute top-8 left-10">
                     <img class="h-[120px] w-[120px] rounded-lg bg-slate-400">
                     <span class="flex text-sm ml-2 h-[3vh] items-center font-bold relative top-16">
-                        {#each users as user}
-                            {#if user.id == 1}
-                                {user.name}
-                            {/if}
-                        {/each}
+                        {user.FirstName} {user.LastName}
                     </span>
                 </div>
             </div>
@@ -31,7 +28,7 @@
                 <div>
                     <span class="flex font-bold ml-2">About</span>
                     <div class="flex justify-center">
-                        <About {toggleEditMode} {users} isEditing={isEditing} />
+                        <About {toggleEditMode} {user} isEditing={isEditing} />
                     </div>
                 </div>
             </div>
@@ -44,12 +41,10 @@
             <!-- Limit the height of the members list and allow it to scroll -->
             <div class="flex flex-col mt-4 mb-4 w-full overflow-y-auto h-[400px]">
                 <div class="flex flex-col">
-                    {#each users as user}
                         <div class="flex flex-row m-2">
                             <span class="h-[35px] w-[35px] bg-customPP rounded-sm mr-4 p-2"></span>
-                            <p class="bg-customGray flex items-center w-full p-2">Membre {user.id}</p>
+                            <p class="bg-customGray flex items-center w-full p-2">Membre {user.Id}</p>
                         </div>
-                    {/each}
                 </div>
             </div>
         </section>

@@ -1,6 +1,7 @@
 <script>
-  export let users = [];
+  export let user = [];
   export let isEditing = false;
+  let users = []
 
   function toggleEditMode() {
       isEditing = !isEditing;
@@ -17,8 +18,7 @@
 </script>
 
 <div class="mt-2 m-2 p-8 mx-auto bg-white shadow-md rounded-md hover:shadow-lg transition-shadow duration-300">
-  {#each users as user}
-      {#if isEditing && user.id == 1}
+      {#if isEditing }
           <div>
               <label class="block mb-1">Bio:</label>
               <input
@@ -42,10 +42,9 @@
                   </button>
               </div>
           </div>
-      {:else if user.id == 1}
+      {:else}
           <div on:dblclick={toggleEditMode}>
-              <h2 class="text-xl font-bold">Bio</h2>
+              <h2 class="text-xl font-bold">{user.AboutMe}</h2>
           </div>
       {/if}
-  {/each}
 </div>

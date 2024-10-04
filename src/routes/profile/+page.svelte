@@ -278,7 +278,7 @@
          <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
             <RightPanelFunctions {showProfile} {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
                 {#if showProfile == true && selectedPostComments.length == 0 }
-                <Profile {users} />
+                <Profile {user} />
             {:else if showNotification == true && selectedPostComments.length == 0 }
                 <Notification />
             {:else if showProfile == false && showNotification == false}
