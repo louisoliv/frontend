@@ -7,6 +7,8 @@
   import Notification from '../Notification.svelte'
   import Post from '../Post.svelte'
   import HomeSvg from '../HomeSvg.svelte';
+  import LikeSvg from '../LikeSvg.svelte';
+  import { onMount } from 'svelte'; // Import onMount for client-side operations
 
 
     let users = [];
@@ -17,7 +19,6 @@
     let showNotification = false;
     let showProfile = false;
     let selectedPostComments = []; 
-
 
 
 
@@ -45,11 +46,11 @@
     }
 
     
-    let cookieValue =  getCookieValue();
+    export let cookieValue = getCookieValue();  
     console.log("Value of the cookie: ", cookieValue);
 
 
-    async function fetchCookieValue(url, data) {
+    export async function fetchCookieValue(url, data) {
         console.log(url);
         console.log(data);
        try {
@@ -97,6 +98,7 @@
     let resultPosts = []
     let resultComments = []
     export let resultUserInfo = []
+    let sortedResultPosts = []
 
     async function AllFetches () {
         let result = await fetchCookieValue('http://localhost:8080/verificationSessionId', cookieValue)
@@ -122,12 +124,29 @@
         console.log("resltUserInfo: ",resultUserInfo);
         resultPosts = fetchedPosts.Posts
         console.log("Result Post . post: ", resultPosts);
+        console.log("type of resultPosts: ", typeof(resultPosts))
+        // console.log("Post dates before sorting:", resultPosts.map(post => post.CreationDate));
+        // sortedResultPosts = resultPosts.sort(
+        //     (a, b) => new Date(b.CreationDate).getTime() - new Date(a.CreationDate).getTime()
+        // );
+        sortedResultPosts = resultPosts.sort(
+            (a, b) => new Date(b.CreationDate).getTime() - new Date(a.CreationDate).getTime()
+        )
+        console.log("sorted posts: ", sortedResultPosts);
         console.log("Result Comment: ", resultComments);
     
     }
 
     
-    AllFetches()
+      // Perform all fetches after the page is mounted in the browser
+      onMount(async () => {
+        // Retrieve the cookie value after the page has mounted
+        cookieValue = getCookieValue();
+        console.log("Value of the cookie: ", cookieValue);
+
+        // Run all fetches only in the client (after page load)
+        await AllFetches();
+      });
 
     
     let COMMENTS = []
@@ -159,17 +178,18 @@
         sectionComment.style.display = "flex"
     }
 
-    function hideSectionComment() {
-        let sectionComment = document.getElementById("commentSection")
-        sectionComment.style.display = "none"
-        selectedPostComments = []
-    }
+    // function hideSectionComment() {
+    //     let sectionComment = document.getElementById("commentSection")
+    //     sectionComment.style.display = "none"
+    //     selectedPostComments = []
+    // }
 
-    function bellIcon() {
-        console.log("clickkkkk");
-        selectedPostComments = []; 
-        showNotification = !showNotification
-    }
+    // function bellIcon() {
+    //     console.log("clickkkkk");
+    //     selectedPostComments = []; 
+    //     showNotification = !showNotification
+    // }
+
     function handleToggleProfile(event) {
         const { showProfile: updatedShowProfile, showNotification: updatedShowNotification, selectedPostComments: updatedSelectedPostComments } = event.detail;
         showProfile = updatedShowProfile;
@@ -206,8 +226,8 @@
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
                     <div class="bg-white m-2.5 max-h-screen overflow-auto flex flex-col items-center">
                         <!-- Render the fetched posts -->
-                        {#if resultPosts.length > 0}
-                            {#each resultPosts as post}
+                        {#if sortedResultPosts.length >= 0}
+                            {#each sortedResultPosts as post}
                                 <button on:click={displaySectionComment(post.Id)} id="postDiv" class="flex flex-col bg-white h-auto p-2 mt-4 mb-4 hover:scale-103 w-[95%]">
                                     <div class="flex flex-row justify-between p-4">
                                         {#if post.Username} 
@@ -217,16 +237,20 @@
                                         {/if}
                                         
                                         <div class="flex">
-                                            <div class="w-4 h-5 bg-red-500">{post.LikeCount}</div>
-                                            <div class="w-4 h-5 bg-red-900"></div>
-                                    
+                                            <div class="flex ">
+                                            <LikeSvg/>
+                                            {post.LikeCount}</div>                                    
                                             <div class="w-4 h-5 bg-red-500">{post.DislikeCount}</div>
-                                            <div class="w-4 h-5 bg-red-900"></div>
                                         </div>
                                         <!-- <div>Post ID: {post.id}</div> -->
                                     </div>
                                     <div class="flex p-2">Date: {post.CreationDate}</div>
                                     <div class="flex bg-gray-300 p-4">Body: {post.Text}</div>
+                                    {#if post.Image}
+                                        <div class="flex m-auto">
+                                            <img src={post.Image} class="flex p-4 rounded-2xl w-[40vw] items-center" alt="">
+                                        </div>
+                                    {/if}
                                 </button>
                             {/each}
                         {:else}

@@ -32,6 +32,9 @@
                 valuePassword = "";
                 goto('/home');
                } else {
+                console.log("Error");
+                const errorDiv = document.getElementById("divError")
+                errorDiv.style.display = "flex"
                 return
                }
            } else {
@@ -98,6 +101,10 @@
             >
                 <button id="ToRegisterButton">Access to blog</button>
             </a>
+
+            <div id="divError" class="m-3 p-1 justify-center hidden no-underline hover:no-underline border-2 rounded-md bg-red-600 text-white">
+                <span>Mauvais mot de passe ou mauvaise adresse mail</span>
+            </div>
 
         </div>
     </form>
