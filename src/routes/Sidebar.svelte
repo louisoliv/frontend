@@ -9,8 +9,8 @@
     export let photos= [];
 </script>
 
-<section class="relative flex min-h-screen">
-    <section class="flex flex-col bg-gray-800 min-h-[110vh] w-20 ">
+<section class="relative flex h-screen">
+    <section class="flex flex-col bg-gray-800 h-sreen w-20 ">
     <button on:click={()=> goto("/home")} class="ml-2 z-0 cursor-pointer"> 
         <Logo/>
     </button>
@@ -35,13 +35,13 @@
         <a href="/profile" class="rounded-full bg-yellow-600 text-white max-w-[64px] min-h-[64px] m-1 mt-10 text-center items-center justify-center flex"><button>Profile</button></a>
         <!-- <button class="rounded-full bg-red-600 m-1 text-sm p-1" on:click={deleteCookie}>Log out</button> -->
     </section>
-    <section class="flex flex-col bg-zinc-00 min-h-screen items-center w-[90%]">
+    <section class="flex flex-col bg-zinc-00 h-screen items-center w-[90%]">
         <!-- <input class="ml-2 text-2xl  text-blue-500 my-4 ms-20 max-w-[px] p-2" placeholder="Search..."> -->
         <div class="flex h-[7vh]">
             <input class="text-xxl  text-blue-500 m-4 max-w-[px] p-1" placeholder="Search...">
         </div>
         <div class="bg-white flex flex-col h-[30vh] w-[90%] justify-center items-center mt-4 mb-4">Evénements</div>
-        <div class="flex flex-col bg-white mt-4 mb-4 h-[55vh] w-[90%] justify-center items-center">
+        <div class="flex flex-col bg-white mt-4 mb-4 h-[50vh] w-[90%] justify-center items-center">
             <div class="flex flex-col">
                 <div class="flex flex-row m-2">
                     <span class="h-[25px] w-[25px] bg-customPP rounded-full mr-4"></span>

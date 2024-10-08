@@ -43,9 +43,8 @@
     console.log("In Comment component: ",resultUserInfo);
 
     let authorId = cookieValue
-    let text = ""    
+    export let text = ""    
     const date = new Date();
-
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -78,7 +77,7 @@
        }
     }
     
-    async function createComment() {
+    export async function CreateComment() {
         const CommentData = {
             AuthorId: authorId,
             Text: text,
@@ -99,7 +98,7 @@
 
      onMount(async () => {
         // Run all fetches only in the client (after page load)
-        await createComment();
+        await CreateComment();
       });
 
       let publishButton = false
@@ -114,7 +113,7 @@
 
     <div class="h-screen overflow-hidden relative">
         <!-- <button on:click={hideSectionComment}>X</button> -->
-        <div class="flex flex-col overflow-auto">
+        <div class="flex flex-col overflow-auto h-[70vh]">
             <!-- Render the comments for the selected post -->
             {#if selectedPostComments.length > 0}
                     <span class="font-bold ml-2">Commentaires</span>
@@ -137,22 +136,20 @@
                 <p class="flex justify-center text-center text-xl">No  comments available, please select a post.</p>
             {/if}
              <!-- Comment Button -->
-            <div class="flex w-auto justify-center">
-                <button on:click={toggleCommentBox} class="bg-blue-500 flex justify-center w-[10vw] rounded-lg text-white mt-auto">
-                    Commenter
-                </button>
-            </div>
         </div>
-
-                <!-- Comment Box (appears from the bottom, inside the section) -->
+        <div class="flex w-auto justify-center">
+            <button on:click={toggleCommentBox} class="bg-blue-500 flex justify-center w-[10vw] rounded-lg text-white mt-3 mb-3">
+                Commenter
+            </button>
+        </div>
+        <!-- Comment Box (appears from the bottom, inside the section) -->
         <div class="flex flex-col absolute bottom-0 p-4 transition-transform duration-500 bg-gray-100  h-[15vh] w-full overflow-auto"
-             style="transform: translateY({showCommentBox ? '0' : '100%'})">
+            style="transform: translateY({showCommentBox ? '0' : '100%'})">
             <textarea bind:value={text} class="w-full p-2 border border-gray-300 rounded-md resize-none" placeholder="Ecrire un commentaire..." ></textarea>
-             
             {#if publishButton}
                 <div class="flex justify-end mt-2">
-                    <button  on:click={createComment}  on:click={toggleCommentBox} on class="bg-blue-500 text-white rounded-lg p-1">Envoyer</button>
-                </div>
+                    <button  on:click={CreateComment}  on:click={toggleCommentBox} on class="bg-blue-500 text-white rounded-lg p-1">Envoyer</button>
+                 </div>
             {/if}
         </div>
     </div>

@@ -207,10 +207,10 @@
 
 </script>
 
-<section class="flex min-h-screen bg-gray-200">
+<section class="flex h-screen bg-gray-200">
     <Sidebar { users } { albums } { photos } />
-    <section class="flex min-h-screen w-full">
-        <section class="flex flex-col min-h-screen w-[80%]">
+    <section class="flex h-screen w-full">
+        <section class="flex flex-col w-[80%]">
             <section>
                 <div class="bg-white flex justify-between items-center mt-4 m-2.5 p-0.5">
                     <div class="flex items-center align-middle">
@@ -226,7 +226,12 @@
                     {/if}
                 </div>
                 <!-- <textarea class="h-7 w-96 m-2" placeholder="Ecrire le contenu du post"></textarea> -->
-                    <div class="bg-white m-2.5 max-h-screen overflow-auto flex flex-col items-center">
+                    <div class="bg-white m-2.5 h-[92vh] overflow-auto flex flex-col items-center
+                              [&::-webkit-scrollbar]:w-2
+                          [&::-webkit-scrollbar-track]:bg-gray-100
+                          [&::-webkit-scrollbar-thumb]:bg-gray-300
+                          [&::-webkit-scrollbar-track]:rounded-full
+                          [&::-webkit-scrollbar-thumb]:rounded-full">
                         <!-- Render the fetched posts -->
                         {#if sortedResultPosts.length >= 0}
                             {#each sortedResultPosts as post}
@@ -261,7 +266,7 @@
                     </div>
             </section>
         </section>
-        <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
+        <section id="commentSection" class="bg-white flex flex-col h-screen w-[35%] w-max-[40vw]">
             <RightPanelFunctions {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
             {#if !showNotification}
             <Comment {selectedPostComments} {selectedPostId} />
