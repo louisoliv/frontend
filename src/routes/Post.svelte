@@ -172,7 +172,7 @@
 
 </script>
 
-<div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center">
+<div class="fixed z-10 inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center">
   <div class="bg-white p-6 rounded-lg shadow-lg w-[50vw] h-auto">
   <div class="flex items-center text-center align-middle mb-4 justify-around">
     <div></div>

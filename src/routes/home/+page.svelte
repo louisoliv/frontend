@@ -19,6 +19,7 @@
     let showNotification = false;
     let showProfile = false;
     let selectedPostComments = []; 
+    let selectedPostId = ""
 
 
 
@@ -173,6 +174,7 @@
         COMMENTS = fetchedComments.Posts
         console.log("COMMENTS: ", COMMENTS);
         selectedPostComments = findCommentPosts(postId);
+        selectedPostId = postId
         showNotification = false
         let sectionComment = document.getElementById("commentSection")
         sectionComment.style.display = "flex"
@@ -262,7 +264,7 @@
         <section id="commentSection" class="bg-white flex flex-col min-h-screen w-[35%] w-max-[40vw]">
             <RightPanelFunctions {showNotification} {selectedPostComments} on:toggleProfile={handleToggleProfile} />
             {#if !showNotification}
-            <Comment {selectedPostComments} />
+            <Comment {selectedPostComments} {selectedPostId} />
             {:else}
             <Notification />
             {/if}
